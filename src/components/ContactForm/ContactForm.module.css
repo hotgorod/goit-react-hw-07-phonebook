@@ -1,0 +1,23 @@
+.contactForm {
+  display: block;
+ 
+}
+.inputText{
+  width: 94.5%;
+    padding: 10.5px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: roboto,sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+.formButton{
+  display: block;
+  width: 130px;
+  height: 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+}
