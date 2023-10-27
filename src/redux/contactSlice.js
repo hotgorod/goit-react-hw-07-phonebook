@@ -27,9 +27,18 @@ const contactSlice = createSlice({
   initialState: INITIAL_STATE,
   extraReducers: builder =>
     builder
-      .addCase(fetchContacts.pending, state => {})
-      .addCase(fetchContacts.fulfilled, (state, action) => {})
-      .addCase(fetchContacts.rejected, (state, action) => {}),
+      .addCase(fetchContacts.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchContacts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      }),
 
   // reducers: {
 

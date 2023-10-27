@@ -22,7 +22,7 @@ export const App = () => {
       alert('The contact already exist');
       return; 
     }
-    dispatch(addContact({contactName, contactNumber}));
+    // dispatch(addContact({contactName, contactNumber}));
   }
    return (
      <div className={css.container}>
@@ -35,8 +35,8 @@ export const App = () => {
                  <h1>Phonebook</h1>
                  <ContactForm addContactCallback={addContactToPhonebook} />
                  <h2>Contacts</h2>
-                 <ContactsPage />
-                 <Filter />
+                 {/* <ContactsPage /> */}
+                 {/* <Filter /> */}
                  <ContactList />
                </>
              }
