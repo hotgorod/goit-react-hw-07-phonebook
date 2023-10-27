@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 import ContactForm from './ContactForm/ContactForm.';
 import css from './App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
+import { Route, Routes } from 'react-router-dom';
 
-
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 
 export const App = () => {
   
@@ -25,14 +26,25 @@ export const App = () => {
     dispatch(addContact({contactName, contactNumber}));
   }
    return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm addContactCallback={addContactToPhonebook} />
-      <h2>Contacts</h2>
-      <Filter/>
-      <ContactList />
-    </div>
-  );
+     <div className={css.container}>
+       <h1>Phonebook</h1>
+
+       <Suspense fallback="Loading...">
+         <Routes>
+           <Route
+             path="/"
+             element={
+               <ContactForm addContactCallback={addContactToPhonebook} />
+             }
+           />
+           <Route path="/contacts" element={<ContactsPage />} />
+         </Routes>
+       </Suspense>
+       <h2>Contacts</h2>
+       <Filter />
+       <ContactList />
+     </div>
+   );
 };
 
 
