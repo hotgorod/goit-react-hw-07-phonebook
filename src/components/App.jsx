@@ -36,7 +36,7 @@ export const App = () => {
                  <ContactForm addContactCallback={addContactToPhonebook} />
                  <h2>Contacts</h2>
                  {/* <ContactsPage /> */}
-                 {/* <Filter /> */}
+                 <Filter />
                  <ContactList />
                </>
              }

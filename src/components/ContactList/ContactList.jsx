@@ -8,7 +8,7 @@ import { selectItems, selectItemsError, selectItemsIsloading } from 'redux/conta
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectItems);
+  const items = useSelector(selectItems);
   const isLoading = useSelector(selectItemsIsloading);
   const error = useSelector(selectItemsError);
   // const filter = useSelector(state => state.contacts.filter);
@@ -26,6 +26,10 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch])
   
+  const handleDeleteContact = (contactId) => {
+  dispatch(deleteContact(contactId))
+}
+
   return (
     <>
       {isLoading && (
@@ -39,17 +43,17 @@ const ContactList = () => {
         </div>
       )}
       <ul className={css.list}>
-        {contacts !== null &&
-          contacts.map(contact => {
+        {items !== null &&
+          items.map(item => {
             return (
-              <li className={css.contactListItem} key={contact.id}>
+              <li className={css.contactListItem} key={item.id}>
                 <p className={css.contactListItemText}>
-                  {contact.name}: {contact.phone}
+                  {item.name}: {item.phone}
                 </p>
                 <button
                   className={css.deleteButton}
                   type="button"
-                  // onClick={() => dispatch(deleteContact({ key }))}
+                  onClick={() => handleDeleteContact(item.id)}
                 >
                   Delete
                 </button>

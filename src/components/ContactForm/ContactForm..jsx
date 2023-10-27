@@ -1,39 +1,48 @@
 import { useState } from 'react';
 import React from 'react';
 import css from './ContactForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
 
 export const ContactForm = ({ addContactCallback }) => {
-  const [contactName, setContactName] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+ const dispatch = useDispatch();
+//  const items = useSelector(selectItems);
+//  const isLoading = useSelector(selectItemsIsloading);
+//  const error = useSelector(selectItemsError);
 
-  const handleChange = event => {
-    const { name, value } = event.currentTarget;
-    if (name === 'name') {
-      setContactName(value);
-    } else if (name === 'number') {
-      setContactNumber(value);
-    }
-  };
+  // const handleChange = event => {
+  //   const { name, value } = event.currentTarget;
+  //   if (name === 'name') {
+  //     setContactName(value);
+  //   } else if (name === 'number') {
+  //     setContactNumber(value);
+  //   }
+  // };
 
-  const handleSubmit = event => {
+  const handleAddContact = event => {
     event.preventDefault();
 
-    addContactCallback(contactName, contactNumber);
+    const name = event.currentTarget.elements.name.value;
+    const phone = event.currentTarget.elements.number.value;
 
-    setContactNumber('');
-    setContactName('');
+    const newContact = {
+      name,
+      phone,
+    }
+    dispatch(addContact(newContact));
+    console.log(newContact);
+    event.currentTarget.reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={css.contactForm}>
+    <form onSubmit={handleAddContact} className={css.contactForm}>
       <label>
         Name
         <input
           className={css.inputText}
           type="text"
           name="name"
-          value={contactName}
-          onChange={handleChange}
+         required
         />
       </label>
       <label>
@@ -42,8 +51,7 @@ export const ContactForm = ({ addContactCallback }) => {
           className={css.inputText}
           type="tel"
           name="number"
-          value={contactNumber}
-          onChange={handleChange}
+                 required
         />
       </label>
       <button type="submit" className={css.formButton}>
