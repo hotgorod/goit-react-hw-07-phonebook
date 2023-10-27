@@ -11,7 +11,6 @@ const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 
 export const App = () => {
   
- 
   const contacts = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
   const addContactToPhonebook = (contactName, contactNumber) => {
@@ -27,22 +26,34 @@ export const App = () => {
   }
    return (
      <div className={css.container}>
-       <h1>Phonebook</h1>
-
        <Suspense fallback="Loading...">
          <Routes>
            <Route
              path="/"
              element={
-               <ContactForm addContactCallback={addContactToPhonebook} />
+               <>
+                 <h1>Phonebook</h1>
+                 <ContactForm addContactCallback={addContactToPhonebook} />
+                 <h2>Contacts</h2>
+                 <ContactsPage />
+                 <Filter />
+                 <ContactList />
+               </>
              }
            />
-           <Route path="/contacts" element={<ContactsPage />} />
+           {/* <Route
+             path="/contacts"
+             element={
+               <>
+                 <h2>Contacts</h2>
+                 <ContactsPage />
+                 <ContactList />
+                 <Filter />
+               </>
+             }
+           /> */}
          </Routes>
        </Suspense>
-       <h2>Contacts</h2>
-       <Filter />
-       <ContactList />
      </div>
    );
 };

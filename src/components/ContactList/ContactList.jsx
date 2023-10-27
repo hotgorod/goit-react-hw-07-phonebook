@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './ContactList.module.css';
 import { deleteContact } from 'redux/contactSlice';
 
@@ -19,6 +19,7 @@ const ContactList = () => {
 
   const filteredContacts = getFilteredContacts();
 
+  useEffect(()=> {},[dispatch])
   return (
     <ul className={css.list}>
       {filteredContacts.map(({ key, contactName, contactNumber }) => (
