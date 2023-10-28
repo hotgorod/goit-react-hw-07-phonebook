@@ -4,7 +4,7 @@ import css from './ContactForm.module.css';
 import { useDispatch} from 'react-redux';
 import { addContact } from 'redux/contactSlice';
 
-export const ContactForm = ({ addContactCallback }) => {
+export const ContactForm = () => {
  const dispatch = useDispatch();
 
 
@@ -19,7 +19,7 @@ export const ContactForm = ({ addContactCallback }) => {
       phone,
     }
     dispatch(addContact(newContact));
-    console.log(newContact);
+    
     event.currentTarget.reset();
   };
 
