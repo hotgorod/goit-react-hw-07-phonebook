@@ -5,14 +5,15 @@ import { selectItemsFilter } from 'redux/contacts.selectors';
 import { setFilter } from 'redux/contactSlice';
 
 
+
 const Filter = () => {
   const filter = useSelector(selectItemsFilter);
+  
   const dispatch = useDispatch();
 
   const handleFilter = ({ target: { value } }) => {
     dispatch(setFilter(value));
   };
-
   return (
     <label>
       Find contacts by name

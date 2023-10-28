@@ -1,23 +1,12 @@
-import { useState } from 'react';
+
 import React from 'react';
 import css from './ContactForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addContact } from 'redux/contactSlice';
 
 export const ContactForm = ({ addContactCallback }) => {
  const dispatch = useDispatch();
-//  const items = useSelector(selectItems);
-//  const isLoading = useSelector(selectItemsIsloading);
-//  const error = useSelector(selectItemsError);
 
-  // const handleChange = event => {
-  //   const { name, value } = event.currentTarget;
-  //   if (name === 'name') {
-  //     setContactName(value);
-  //   } else if (name === 'number') {
-  //     setContactNumber(value);
-  //   }
-  // };
 
   const handleAddContact = event => {
     event.preventDefault();
